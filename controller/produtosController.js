@@ -2,7 +2,11 @@ const {Produto} = require('../models')
 const capturarErrosAsync = require('../middleware/capturarErrosAsync')
 
 const produtosController = {
+<<<<<<< HEAD
     novoProduto: capturarErrosAsync(async(req, res, next) => {
+=======
+    novoProduto: capturarErrosAsync( async(req, res, next) => {
+>>>>>>> main
         let {nome, descricao, valor, categoria, imagem_produto, estoque } = req.body
         
         const produto = await Produto.create({

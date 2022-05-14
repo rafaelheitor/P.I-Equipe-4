@@ -14,12 +14,31 @@ const erroMiddleware = require('./middleware/erroMiddleware')
 var app = express()
 
 // view engine setup
+<<<<<<< HEAD
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+=======
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+	session({
+	  resave: true,
+	  saveUninitialized: true,
+	  secret: 'palavraSecreta',
+	  cookie: {maxAge: 100 * 60 * 60 * 24}
+	})
+  )
+>>>>>>> main
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(
