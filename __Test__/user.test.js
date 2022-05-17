@@ -92,7 +92,13 @@ test('Deve responder com erro ao enviar senha incorreta', done => {
     expect(response.body.message).toBe('Email ou senha inválidos')
     done()
   })
+})
 
+test('Deve alterar a senha no banco', () => {
+  request(app)
+  
+  .post('/users/eu/atualizarsenha')
+  .send({})
 })
 
 describe('Testa o diretorio raiz', () => {
