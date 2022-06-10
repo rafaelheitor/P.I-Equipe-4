@@ -5,7 +5,8 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
@@ -14,7 +15,7 @@ services:
   app:
     depends_on:
       - db
-    build: ./
+    build: ./src/
     restart: unless-stopped
     env_file: ./.env
     ports:
