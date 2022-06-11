@@ -11,8 +11,8 @@
     "username": "root",
     "password": "",
     "database": "sqlpi",
-    "port": "3306",
-    "host": "db",
+    "port": "3307",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {

@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         foto_perfil: DataTypes.STRING,
         atributo: DataTypes.STRING
     }, {
-        tableName: 'usuario',
-        timestamps: false
+        tableName: 'usuarios',
     })
 
     return Usuario
