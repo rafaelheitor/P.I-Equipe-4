@@ -13,8 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         estoque: DataTypes.INTEGER,
         imagem_produto: DataTypes.STRING
     }, {
-        tableName: 'produto',
-        timestamps: false
+        tableName: 'produtos',
     })
 
     return Produto
