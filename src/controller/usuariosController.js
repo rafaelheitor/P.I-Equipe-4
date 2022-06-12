@@ -39,7 +39,6 @@ const usuariosController = {
   },
   registroUser: capturarErrosAsync(async (req, res, next) => {
     let { email, senha, nome, atributo } = req.body
-    let senhaHash = await bcrypt.hash(senha, 10)
     let oUsuarioJaExiste = await Usuario.findOne({
       where: {
         email,
@@ -48,7 +47,7 @@ const usuariosController = {
     if (!oUsuarioJaExiste) {
       const usuario = await Usuario.create({
         email,
-        senha: senhaHash,
+        senha,
         nome,
         atributo,
       })
