@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
+const erroMiddleware = require('./middleware/erroMiddleware')
 require('./database')
 
 var indexRouter = require('./routes/index');
@@ -31,7 +32,7 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use(erroMiddleware)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
