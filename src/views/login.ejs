@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +9,21 @@
     <link rel="stylesheet" href="/css/loginStyle.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
+
 <body>
     <div class="container">
+<<<<<<< HEAD:src/views/login.ejs
         <a href="/"> <h1>Pet & Cia </h1></a>
+=======
+        <a href="/">
+            <h1>Pet & Cia </h1>
+        </a>
+>>>>>>> main:views/Login.ejs
         <div class="head">
             <a href="/"><img src="../img/paw-solid.svg" alt="logo"></a>
             <h3>Acesse Sua conta</h3>
         </div>
+<<<<<<< HEAD:src/views/login.ejs
         <form action="/users/login" method="POST">
             <div class="controle-form">
                 <input type="text" placeholder="Email" name="email" required>                
@@ -24,6 +33,17 @@
             <div class="controle-form">
                 <input type="password" placeholder="Senha" name="senha" required>
                 
+=======
+        <form action="/users/login" method="post">
+            <div class="controle-form">
+                <input type="text" placeholder="Email" name="email" required>
+
+
+            </div>
+            <div class="controle-form">
+                <input type="password" placeholder="Senha" name="senha" required>
+
+>>>>>>> main:views/Login.ejs
             </div>
             <button class="btn" type="submit">Entrar</button>
         </form>
@@ -31,4 +51,5 @@
         <a href="/users/registro">Registre-se</a>
     </div>
 </body>
+
 </html>
