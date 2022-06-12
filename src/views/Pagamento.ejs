@@ -6,32 +6,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Sacola.css">
+    <link rel="stylesheet" href="/css/Sacola.css">
     <title>Tela de Pagamento</title>
 </head>
 
 <body>
-    <header>
+    <%-  include('partials/header.ejs'); %>
         <nav class="container">
             <section class="p-header">
                 <div class="logo">
-                    <img src="img/paw-solid.svg" alt="">
+                    <img src="../img/paw-solid.svg" alt="">
                     <p>Pet & Cia</p>
                 </div>
             </section>
             <section class="nav">
                 <ul>
-                    <li><img src="./img/ep_shopping-bag.svg" alt="Sacola">Sacola</li>
-                    <!-- <li><img src="./img/ant-design_user-outlined.svg" alt="Identificação">Identificação</li> -->
-                    <li><img src="./img/carbon_delivery.svg" alt="Entrega">Entrega</li>
-                    <li><img src="./img/Sinfrao.svg" alt="Pagamento">Pagamento</li>
+                    <li><img src="../img/ep_shopping-bag.svg" alt="Sacola">Sacola</li>
+                    <li><img src="./img/ant-design_user-outlined.svg" alt="Identificação">Identificação</li>
+                    <li><img src="../img/carbon_delivery.svg" alt="Entrega">Entrega</li>
+                    <li><img src="../img/Sinfrao.svg" alt="Pagamento">Pagamento</li>
                 </ul>
+                <h1> teste</h1>
             </section>
         </nav>
-    </header>
+    
 
     <main>
-        
+
+
+        <section class="form-p">
+            <h3>Forma de Pagamento</h3>
+            <form action="/pagamento" class="form-s">
+
+                <label for="logradouro">Logradouro</label>
+                <input type="text">
+
+                <label for="numero">Complemento</label>
+                <input type="text">
+
+                <label for="cep">CEP</label>
+                <input type="text">
+
+                <label for="bairro">Bairro</label>
+                <input type="text">
+
+                <label for="cidade">Cidade</label>
+                <input type="text">
+            </form>
+
+            <button>Concluir Compra</button>
         <section>
             <div>
                 <h3>Carrinho de Compras</h3>
@@ -53,13 +76,13 @@
         
     </main>
 
-    <footer>
+    
         <div class="footer">
             <div class="p-footer">
                 <ul>
-                    <li><img src="./img/Customer Support.svg">SAC</li>
-                    <li><img src="./img/WhatsApp.svg">Compre pelo chat online</li>
-                    <li><img src="./img/Encrypt.svg">Certificado de segurança</li>
+                    <li><img src="../img/Customer Support.svg">SAC</li>
+                    <li><img src="../img/WhatsApp.svg">Compre pelo chat online</li>
+                    <li><img src="../img/Encrypt.svg">Certificado de segurança</li>
                 </ul>
                 <p class="f">Preços e condições de pagamento exclusivos para compras via internet, podendo variar nas
                     lojas físicas.<br>
@@ -73,7 +96,7 @@
         </div>
         </div>
 
-    </footer>
+        <%-  include('partials/footer.ejs'); %>
 </body>
 
 </html>

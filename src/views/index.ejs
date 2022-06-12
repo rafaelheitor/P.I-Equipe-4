@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Cabecalho -->
+    <%-  include('partials/header.ejs'); %>
+    <main>
+        <section id="image-p">
+            <ul class="slider">
+                <li>
+                    <img src="img/img1.webp" alt="Propaganda1">
+                </li>
+            </ul>
+        </section>
+
+        <section class="catalogo">
+
+            <!-- <div class="catalogo"> -->
+                <% listaProdutos.forEach(function(produto){ %>
+                    
+            <div>
+                <img src=<%= produto.imagem_produto%> >
+                <p><%= produto.nome%></p>
+                <p><%=produto.valor %></p>
+                <p><%=produto.categoria %></p>
+                <p>Pet&Cia</p>
+                <a href="/produtos/<%=produto.id%>/detalhe"><button class="btn">
+                    <label>Mais informações</label>
+                </button></a>
+                <button class="btn-frete">
+                    <label>Adicionar ao carrinho</label>
+                </button>
+            </div>
+            <% }) %>
+        </section>
+    </main>
+    <!-- footer -->
+    <%- include('partials/footer.ejs'); %>
+</body>
+
+</html>

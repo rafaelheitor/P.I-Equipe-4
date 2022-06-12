@@ -5,30 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/loginStyle.css">
+    <link rel="stylesheet" href="/css/loginStyle.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Pet & Cia </h1>
+        <a href="/"> <h1>Pet & Cia </h1></a>
         <div class="head">
-            <img src="./img/paw-solid.svg" alt="logo">
+            <a href="/"><img src="../img/paw-solid.svg" alt="logo"></a>
             <h3>Acesse Sua conta</h3>
         </div>
-        <form>
+        <form action="/users/login" method="POST">
             <div class="controle-form">
-                <input type="text" placeholder="Email" required>                
+                <input type="text" placeholder="Email" name="email" required>                
                 
                
             </div>
             <div class="controle-form">
-                <input type="password" placeholder="Senha" required>
+                <input type="password" placeholder="Senha" name="senha" required>
                 
             </div>
+            <button class="btn" type="submit">Entrar</button>
         </form>
-        <button class="btn">Entrar</button>
         <p>Ainda não tem registro?</p>
-        <a href="Registro.html">Registre-se</a>
+        <a href="/users/registro">Registre-se</a>
     </div>
 </body>
 </html>

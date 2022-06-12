@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header>
+    <%-  include('partials/header.ejs'); %>
         <nav class="container">
             <section class="p-header">
                 <div class="logo">
@@ -26,36 +26,13 @@
                     <li><img src="./img/carbon_delivery.svg" alt="Entrega">Entrega</li>
                     <li><img src="./img/Sinfrao.svg" alt="Pagamento">Pagamento</li>
                 </ul>
-                <h1> teste</h1>
             </section>
         </nav>
     </header>
 
     <main>
-
-
-        <section class="form-p">
-            <h3>Forma de Pagamento</h3>
-            <form action="/pagamento" class="form-s">
-
-                <!-- <label for="logradouro">Logradouro</label>
-                <input type="text">
-
-                <label for="numero">Complemento</label>
-                <input type="text">
-
-                <label for="cep">CEP</label>
-                <input type="text">
-
-                <label for="bairro">Bairro</label>
-                <input type="text">
-
-                <label for="cidade">Cidade</label>
-                <input type="text"> -->
-            </form>
-
-            <button>Concluir Compra</button>
-        <!-- <section>
+        
+        <section>
             <div>
                 <h3>Carrinho de Compras</h3>
             </div>
@@ -72,7 +49,7 @@
             <div class="container3">
                 <p class="e">Endereço</p>
             </div>
-        </section> -->
+        </section>
         
     </main>
 
