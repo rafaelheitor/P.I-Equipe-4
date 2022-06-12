@@ -28,7 +28,7 @@ const usuariosController = {
     if (aSenhaCombina) {
       req.session.user = usuario
       // res.send('usuario logado')
-      res.redirect(200, '/')
+      res.redirect ('/')
     }
     if (!aSenhaCombina) {
       return next(new ManipuladorDeErros('Email ou senha inválidos', 400))

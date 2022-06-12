@@ -10,7 +10,6 @@ require('./database')
 var indexRouter = require('./routes/index');
 var users = require('./routes/users');
 let produtos = require('./routes/produtos');
-const erroMiddleware = require('./middleware/erroMiddleware');
 
 var app = express();
 
@@ -33,8 +32,7 @@ app.use(
   )
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use(erroMiddleware)
+app.use('/users', users);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));
