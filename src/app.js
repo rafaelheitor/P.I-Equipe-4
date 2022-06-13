@@ -5,13 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
 const erroMiddleware = require('./middleware/erroMiddleware')
-require('./database')
+const database = require('./database')
+const dotenv = require('dotenv')
 
 var indexRouter = require('./routes/index');
 var users = require('./routes/users');
 let produtos = require('./routes/produtos');
 
 var app = express();
+dotenv.config({path: 'config/config.env'})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
