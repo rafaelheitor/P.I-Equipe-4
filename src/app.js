@@ -8,8 +8,8 @@ const erroMiddleware = require('./middleware/erroMiddleware')
 const database = require('./database')
 const dotenv = require('dotenv')
 
-var indexRouter = require('./routes/index');
-var users = require('./routes/users');
+const indexRouter = require('./routes/index');
+const users = require('./routes/users');
 let produtos = require('./routes/produtos');
 
 var app = express();
@@ -34,6 +34,7 @@ app.use(
   )
 
 app.use('/', indexRouter);
+app.use('/produtos', produtos)
 app.use('/users', users);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
