@@ -20,6 +20,7 @@ services:
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    command: ./docker-entrypoint.sh
     environment:
       - DB_HOST=db
       - DB_USER=$MYSQLDB_USER
