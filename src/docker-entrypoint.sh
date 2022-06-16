@@ -3,6 +3,9 @@
 echo "Waiting for MySQL to start..."
 ./wait-for db:3306
 
+echo "Droping the databse..."
+npm run db:drop 
+
 echo "creating the databse..."
 npm run db:create 
 
