@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_ALLOW_EMPTY_PASSWORD=$MYSQL_ALLOW_EMPTY_PASSWORD
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
@@ -24,7 +24,7 @@ services:
     environment:
       - DB_HOST=db
       - DB_USER=$MYSQLDB_USER
-      - DB_PASSWORD=$MYSQL_ALLOW_EMPTY_PASSWORD
+      - DB_PASSWORD=$MYSQL_ROOT_PASSWORD
       - DB_NAME=$MYSQLDB_DATABASE
       - DB_PORT=$MYSQLDB_DOCKER_PORT
     stdin_open: true
