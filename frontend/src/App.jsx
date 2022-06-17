@@ -11,7 +11,6 @@ export default function App() {
   const fetchProdutos = async () => {
     try {
       const { data: produtos } = await produtosApi.get("/produtos")
-      console.log(produtos)
       setApiData(produtos)
     } catch (error) {
       console.log(error)
@@ -24,6 +23,7 @@ export default function App() {
 
   const produtosCard = apiData.map((produto) => (
     <CardProduto
+      key={produto.id}
       nome={produto.nome}
       valor={produto.valor}
       imagem={produto.imagem_produto}

@@ -4,8 +4,8 @@ export default function CardProduto(props) {
   return (
     <div>
       <img src={props.imagem} alt="produto" />
-      <p>{props.nome}</p>
-      <p>R${props.valor}</p>
+      <h4>{props.nome}</h4>
+      <p>R${props.valor},00</p>
       <p>{props.categoria}</p>
       <p>Pet&Cia</p>
       <a href="/produtos/1/detalhe">
