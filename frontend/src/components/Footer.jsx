@@ -1,4 +1,11 @@
 import React from "react"
+import instagramIcon from '../img/instagram-brands (1).svg'
+import facebookIcon from '../img/facebook-brands.svg'
+import twitterIcon from '../img/twitter-brands.svg'
+import dogIcon from '../img/dog-solid.svg'
+import catIcon from '../img/cat-solid.svg'
+import fishIcon from '../img/fish-solid.svg'
+
 
 export default function Footer() {
   return (
@@ -8,15 +15,15 @@ export default function Footer() {
           <h4>Redes Sociais</h4>
           <ul>
             <li>
-              <img src="/img/instagram-brands (1).svg" alt="Instagram" />
+              <img src={instagramIcon} alt="Instagram" />
               <a></a>Instagram
             </li>
             <li>
-              <img alt="Facebook" />
+              <img src={facebookIcon} alt="Facebook" />
               <a></a>Facebook
             </li>
             <li>
-              <img src="/img/twitter-brands.svg" alt="Twitter" />
+              <img src={twitterIcon} alt="Twitter" />
               <a></a>Twitter
             </li>
           </ul>
@@ -41,13 +48,13 @@ export default function Footer() {
           <h4>Departamentos</h4>
           <ul>
             <li>
-              <img src="/img/dog-solid.svg" alt="Departamento de Cães" />
+              <img src={dogIcon} alt="Departamento de Cães" />
             </li>
             <li>
-              <img src="/img/cat-solid.svg" alt="Departamento de Gatos" />
+              <img src={catIcon} alt="Departamento de Gatos" />
             </li>
             <li>
-              <img src="/img/fish-solid.svg" alt="Departamento de Peixes" />
+              <img src={fishIcon} alt="Departamento de Peixes" />
             </li>
           </ul>
         </div>

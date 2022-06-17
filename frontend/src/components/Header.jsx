@@ -1,4 +1,8 @@
 import React from "react"
+import logo from '../img/paw-solid.svg'
+import user from '../img/user-alt-solid.svg'
+import cart from '../img/shopping-cart-solid.svg'
+
 
 export default function Header() {
   return (
@@ -7,7 +11,7 @@ export default function Header() {
         <section className="p-header">
           <div className="logo">
             <a href="/">
-              <img src="img/paw-solid.svg" alt="" />
+              <img src={logo} alt="" />
             </a>
             <p>Pet & Cia</p>
           </div>
@@ -15,12 +19,12 @@ export default function Header() {
           <input type="text" placeholder="Pesquise seu Produto" />
 
           <button className="logo">
-            <img src="img/user-alt-solid.svg" alt="" />
+            <img src={user} alt="" />
             <a href="/users/login">Entre ou Registre-se</a>
           </button>
           <a href="/users/pagamento">
             <img
-              src="img/shopping-cart-solid.svg"
+              src={cart}
               alt=" Carrinho de Compras"
               id="carrinho"
             />
