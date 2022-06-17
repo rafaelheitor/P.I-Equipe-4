@@ -8,12 +8,12 @@ export default function CardProduto(props) {
       <p>R${props.valor},00</p>
       <p>{props.categoria}</p>
       <p>Pet&Cia</p>
-      <a href="/produtos/1/detalhe">
-        <button className="btn-info">
+      <a href={`/produtos/${props.id}/detalhe`}>
+        <button className="btn-info" >
           <label>Mais informações</label>
         </button>
       </a>
-      <button className="btn-carrinho">
+      <button className="btn-carrinho" onClick={() => props.carrinho(props)}>
         <label>Adicionar ao carrinho</label>
       </button>
     </div>
