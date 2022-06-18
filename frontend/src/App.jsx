@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import CardProduto from './components/CardProduto'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import produtosApi from './services/produtos'
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 
 export default function App() {
@@ -26,6 +28,7 @@ export default function App() {
 
   const adicionaCarrinho = (obj) => {
     setProdutosCarrinho((prevState) => [obj, ...prevState])
+    toast.success('Produto adicionado ao carrinho')
   }
 
   useEffect(() => {
@@ -46,6 +49,7 @@ export default function App() {
 
   return (
     <div>
+      <ToastContainer />
       <Header />
       <div className="catalogo">{produtosCard}</div>
       <Footer />
