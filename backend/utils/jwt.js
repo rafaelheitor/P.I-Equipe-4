@@ -21,7 +21,6 @@ const enviarToken = (usuario, statusCode, res) => {
 
   res.status(statusCode).cookie('token', token, opcoes).json({
     success: true,
-    token,
     usuario,
   })
 }

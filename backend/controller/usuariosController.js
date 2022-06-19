@@ -27,7 +27,12 @@ const usuariosController = {
 
     let aSenhaCombina = await bcrypt.compare(senha, usuario.senha)
     if (aSenhaCombina) {
-      enviarToken(usuario, 200, res)
+      const resposta = {
+        nome: usuario.nome,
+        email: usuario.email,
+      }
+
+      enviarToken(resposta, 200, res)
     }
     if (!aSenhaCombina) {
       return next(new ManipuladorDeErros('Email ou senha inválidos', 400))
@@ -50,8 +55,12 @@ const usuariosController = {
         nome,
         atributo,
       })
+      const resposta = {
+        nome: usuario.nome,
+        email: usuario.email,
+      }
 
-      enviarToken(usuario, 200, res)
+      enviarToken(resposta, 200, res)
     } else {
       return next(
         new ManipuladorDeErros(
