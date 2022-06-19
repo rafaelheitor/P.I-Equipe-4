@@ -1,26 +1,21 @@
-const express = require("express")
+const express = require('express')
 const router = express()
-const produtosController = require("../controller/produtosController")
-const validaUsuarioLogado = require("../middleware/validaUsuarioLogado")
-const verificaPrivilegios = require("../middleware/verificaPrivilegios")
+const produtosController = require('../controller/produtosController')
+const oUsuarioEstaLogado = require('../middleware/validaUsuarioLogado')
+const verificaPrivilegios = require('../middleware/verificaPrivilegios')
 
-router.get("/", produtosController.todosProdutos)
+router.get('/', produtosController.todosProdutos)
 router.get(
-  "/:id/detalhe",
-  validaUsuarioLogado,
-  produtosController.detalheProduto
+  '/:id/detalhe',
+  oUsuarioEstaLogado,
+  produtosController.detalheProduto,
 )
-router.post(
-  "/novo",
-  validaUsuarioLogado,
-  verificaPrivilegios,
-  produtosController.novoProduto
-)
+router.post('/novo', oUsuarioEstaLogado, produtosController.novoProduto)
 router.delete(
-  "/deletar/:id",
-  validaUsuarioLogado,
+  '/deletar/:id',
+  oUsuarioEstaLogado,
   verificaPrivilegios,
-  produtosController.deletaProduto
+  produtosController.deletaProduto,
 )
 
 module.exports = router

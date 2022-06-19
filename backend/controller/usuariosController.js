@@ -2,6 +2,7 @@ const Usuario = require('../models/Usuario')
 const bcrypt = require('bcrypt')
 const capturarErrosAsync = require('../middleware/capturarErrosAsync')
 const ManipuladorDeErros = require('../utils/ManipuladorDeErros')
+const enviarToken = require('../utils/jwt')
 
 const usuariosController = {
   login: (req, res) => {
@@ -26,9 +27,7 @@ const usuariosController = {
 
     let aSenhaCombina = await bcrypt.compare(senha, usuario.senha)
     if (aSenhaCombina) {
-      req.session.user = usuario
-      // res.send('usuario logado')
-      res.redirect ('/')
+      enviarToken(usuario, 200, res)
     }
     if (!aSenhaCombina) {
       return next(new ManipuladorDeErros('Email ou senha inválidos', 400))
@@ -52,11 +51,7 @@ const usuariosController = {
         atributo,
       })
 
-      res.status(200).json({
-        success: true,
-        usuario: usuario.email,
-        id: usuario.id,
-      })
+      enviarToken(usuario, 200, res)
     } else {
       return next(
         new ManipuladorDeErros(
@@ -92,16 +87,21 @@ const usuariosController = {
 
     res.status(200).json({
       success: true,
-      message: "Senha atualizado com sucesso"
+      message: 'Senha atualizado com sucesso',
     })
   }),
 
-  logout: capturarErrosAsync( async (req, res, next) => {
-    console.log(req.session)
-    req.session.destroy()
-    console.log(req.session)
-    res.send('Logout com sucesso')
-  })
+  logout: capturarErrosAsync(async (req, res, next) => {
+    res.cookie('token', null, {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    })
+
+    res.status(200).json({
+      success: true,
+      message: 'Logout executado com sucesso',
+    })
+  }),
 }
 
 module.exports = usuariosController

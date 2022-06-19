@@ -1,21 +1,24 @@
+const ManipuladorDeErros = require('../utils/ManipuladorDeErros')
+const jwt = require('jsonwebtoken')
 const Usuario = require('../models/Usuario')
+const capturarErrosAsync = require('./capturarErrosAsync')
 
-const validaUsuarioLogado = async (req, res, next) => {
-    const usuarioSession = req.session.user
+const oUsuarioEstaLogado = capturarErrosAsync(async (req, res, next) => {
+  const { token } = req.cookies
 
-    if(usuarioSession){
-        const usuario = await Usuario.findOne({
-            where: {
-              email: usuarioSession,
-            },
-          })
-    
-        req.usuario = usuario
-    
-        next()
-    }else{
-        res.send("Area restrita")
-    }
-}
+  if (!token) {
+    next(
+      new ManipuladorDeErros(
+        'Por favor, faça login para acessar esse conteúdo',
+        401,
+      ),
+    )
+  }
 
-module.exports = validaUsuarioLogado
+  const decoded = jwt.verify(token, process.env.JWT_SECRET)
+  req.user = await Usuario.findByPk(decoded.id)
+  console.log(req.usuario)
+  next()
+})
+
+module.exports = oUsuarioEstaLogado
