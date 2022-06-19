@@ -50,7 +50,7 @@ export default function App() {
   return (
     <div>
       <ToastContainer />
-      <Header />
+      <Header itens={produtosCarrinho.length} />
       <div className="catalogo">{produtosCard}</div>
       <Footer />
     </div>

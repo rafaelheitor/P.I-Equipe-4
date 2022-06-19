@@ -1,34 +1,33 @@
-import React from "react"
+import React from 'react'
 import logo from '../img/paw-solid.svg'
 import user from '../img/user-alt-solid.svg'
 import cart from '../img/shopping-cart-solid.svg'
+import { Link } from 'react-router-dom'
 
-
-export default function Header() {
+export default function Header(props) {
   return (
     <header>
       <nav className="container">
         <section className="p-header">
-          <div className="logo">
-            <a href="/">
+          <Link to="/">
+            <div className="logo">
               <img src={logo} alt="" />
-            </a>
-            <p>Pet & Cia</p>
-          </div>
+              <p>Pet & Cia</p>
+            </div>
+          </Link>
 
           <input type="text" placeholder="Pesquise seu Produto" />
 
           <button className="logo">
             <img src={user} alt="" />
-            <a href="/users/login">Entre ou Registre-se</a>
+            <Link to="/users/login">Entre ou Registre-se</Link>
           </button>
-          <a href="/users/pagamento">
-            <img
-              src={cart}
-              alt=" Carrinho de Compras"
-              id="carrinho"
-            />
-          </a>
+          <div>
+            <Link to="/carrinho">
+              {props.itens > 0 && <h4>{props.itens}</h4>}
+              <img src={cart} alt=" Carrinho de Compras" id="carrinho" />
+            </Link>
+          </div>
         </section>
 
         <section className="s-header">
