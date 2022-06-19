@@ -1,9 +1,9 @@
-import axios from "axios"
+import axios from 'axios'
 
-const baseUrl = "http://localhost:4000"
+const baseUrl = 'http://localhost:4000/produtos'
 
 const apiProdutos = {
-  get: (endpoit) => axios.get(baseUrl + endpoit),
+  get: () => axios.get(baseUrl),
   create: (endpoit, data) => axios.post(baseUrl + endpoit, data),
 }
 

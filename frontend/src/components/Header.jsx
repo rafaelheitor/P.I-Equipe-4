@@ -2,6 +2,7 @@ import React from 'react'
 import logo from '../img/paw-solid.svg'
 import user from '../img/user-alt-solid.svg'
 import cart from '../img/shopping-cart-solid.svg'
+import logout from '../img/logout.svg'
 import { Link } from 'react-router-dom'
 
 export default function Header(props) {
@@ -18,10 +19,18 @@ export default function Header(props) {
 
           <input type="text" placeholder="Pesquise seu Produto" />
 
-          <button className="logo">
-            <img src={user} alt="" />
-            <Link to="/users/login">Entre ou Registre-se</Link>
-          </button>
+          {props.usuario ? (
+            <div>
+              <h4>Bem vindo, {props.usuario}</h4>
+              <img src={logout} />
+              <button onClick={props.handleLogout}>Sair</button>
+            </div>
+          ) : (
+            <button className="logo">
+              <img src={user} alt="" />
+              <Link to="/login">Entre ou Registre-se</Link>
+            </button>
+          )}
           <div>
             <Link to="/carrinho">
               {props.itens > 0 && <h4>{props.itens}</h4>}

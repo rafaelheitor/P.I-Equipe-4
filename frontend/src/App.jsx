@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
-import CardProduto from './components/CardProduto'
+import CardProduto from './components/produtos/CardProduto'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import produtosApi from './services/produtos'
+import apiUsuarios from './services/usuarios'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 
@@ -13,9 +14,22 @@ export default function App() {
     () => JSON.parse(localStorage.getItem('produtos')) || [],
   )
 
+  const [usuarioLogado, setUsuarioLogado] = useState(
+    () => JSON.parse(localStorage.getItem('usuario')) || {},
+  )
+
+  function logout() {
+    apiUsuarios.logout()
+    setUsuarioLogado({})
+  }
+
+  useEffect(() => {
+    localStorage.setItem('usuario', JSON.stringify(usuarioLogado))
+  }, [usuarioLogado])
+
   const fetchProdutos = async () => {
     try {
-      const { data: produtos } = await produtosApi.get('/produtos')
+      const { data: produtos } = await produtosApi.get()
       setApiData(produtos)
     } catch (error) {
       console.log(error)
@@ -50,7 +64,11 @@ export default function App() {
   return (
     <div>
       <ToastContainer />
-      <Header itens={produtosCarrinho.length} />
+      <Header
+        itens={produtosCarrinho.length}
+        usuario={usuarioLogado.nome}
+        handleLogout={logout}
+      />
       <div className="catalogo">{produtosCard}</div>
       <Footer />
     </div>

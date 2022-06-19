@@ -1,0 +1,70 @@
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import logo from '../img/paw-solid.svg'
+import apiUsuarios from '../services/usuarios'
+import '../App.css'
+
+export default function Login() {
+  const [usuarioForm, setUsuarioForm] = useState({ email: '', senha: '' })
+  const [usuarioLogado, setUsuarioLogado] = useState({})
+
+  function handleChange(event) {
+    const { name, value } = event.target
+
+    setUsuarioForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const postUsuario = async (event) => {
+    event.preventDefault()
+    const { data: resposta } = await apiUsuarios.login('/login', {
+      email: usuarioForm.email,
+      senha: usuarioForm.senha,
+    })
+    const { usuario: usuarioApi } = resposta
+    setUsuarioLogado(
+      localStorage.setItem('usuario', JSON.stringify(usuarioApi)),
+    )
+  }
+
+  return (
+    <div className="container-login">
+      <div className="head-login">
+        <Link to="/">
+          <h1>Pet & Cia </h1>
+          <img src={logo} alt="logo" />
+          <h3>Acesse Sua conta</h3>
+        </Link>
+      </div>
+      <form>
+        <div className="controle-form">
+          <label htmlFor="email">Digite seu Email</label>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={usuarioForm.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="controle-form">
+          <label htmlFor="senha">Digite sua senha</label>
+          <input
+            type="password"
+            placeholder="Senha"
+            name="senha"
+            value={usuarioForm.senha}
+            onChange={handleChange}
+          />
+        </div>
+        <button className="btn" type="submit" onClick={postUsuario}>
+          Entrar
+        </button>
+      </form>
+      <p>Ainda não tem registro?</p>
+      <Link to="/registro">Registre-se</Link>
+    </div>
+  )
+}

@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
-import Carrinho from './components/Carrinho'
+import Carrinho from './components/produtos/Carrinho'
+import Login from './components/Login'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -10,6 +11,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/carrinho" element={<Carrinho />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </BrowserRouter>,
 )
