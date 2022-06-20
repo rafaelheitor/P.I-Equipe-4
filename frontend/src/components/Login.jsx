@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import jwt from 'jwt-decode'
-import apiUsuarios from '../services/usuarios'
-import logo from '../img/paw-solid.svg'
-import '../App.css'
+import React, { useState, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import jwt from "jwt-decode"
+import apiUsuarios from "../services/usuarios"
+import logo from "../img/paw-solid.svg"
+import "../App.css"
 
 export default function Login() {
-  const [usuarioForm, setUsuarioForm] = useState({ email: '', senha: '' })
+  const [usuarioForm, setUsuarioForm] = useState({ email: "", senha: "" })
 
   const navigate = useNavigate()
 
@@ -21,14 +21,14 @@ export default function Login() {
 
   const postUsuario = async (event) => {
     event.preventDefault()
-    const { data: resposta } = await apiUsuarios.login('/login', {
+    const { data: resposta } = await apiUsuarios.login("/login", {
       email: usuarioForm.email,
       senha: usuarioForm.senha,
     })
     const { token } = resposta
-    const usuario = jwt(token)
-    console.log(usuario)
-    navigate('/')
+    const { usuario } = jwt(token)
+    localStorage.setItem("usuario", JSON.stringify(usuario))
+    navigate("/")
   }
 
   return (

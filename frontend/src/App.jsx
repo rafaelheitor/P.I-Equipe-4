@@ -1,34 +1,34 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
-import CardProduto from './components/produtos/CardProduto'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import produtosApi from './services/produtos'
-import apiUsuarios from './services/usuarios'
-import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
+import React, { useState, useEffect, useContext } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import CardProduto from "./components/produtos/CardProduto"
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import produtosApi from "./services/produtos"
+import apiUsuarios from "./services/usuarios"
+import "react-toastify/dist/ReactToastify.css"
+import "./App.css"
 
 export default function App() {
   const [apiData, setApiData] = useState([])
   const [produtosCarrinho, setProdutosCarrinho] = useState(
-    () => JSON.parse(localStorage.getItem('produtos')) || [],
+    () => JSON.parse(localStorage.getItem("produtos")) || []
   )
 
   const [usuarioLogado, setUsuarioLogado] = useState(
-    () => JSON.parse(localStorage.getItem('usuario')) || {},
+    () => JSON.parse(localStorage.getItem("usuario")) || {}
   )
 
   async function logout() {
     try {
-      await apiUsuarios.logout()
       setUsuarioLogado({})
+      toast.success("Logout efetuado com sucesso")
     } catch (error) {
-      toast.error('Logout não efetuado')
+      toast.error("Logout não efetuado")
     }
   }
 
   useEffect(() => {
-    localStorage.setItem('usuario', JSON.stringify(usuarioLogado))
+    localStorage.setItem("usuario", JSON.stringify(usuarioLogado))
   }, [usuarioLogado])
 
   const fetchProdutos = async () => {
@@ -46,11 +46,11 @@ export default function App() {
 
   const adicionaCarrinho = (obj) => {
     setProdutosCarrinho((prevState) => [obj, ...prevState])
-    toast.success('Produto adicionado ao carrinho')
+    toast.success("Produto adicionado ao carrinho")
   }
 
   useEffect(() => {
-    localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
+    localStorage.setItem("produtos", JSON.stringify(produtosCarrinho))
   }, [produtosCarrinho])
 
   const produtosCard = apiData.map((produto) => (
