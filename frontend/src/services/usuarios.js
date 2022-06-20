@@ -10,6 +10,7 @@ const apiUsuarios = {
     }),
   get: (id) => axios.get(baseUrl, id),
   login: (endpoit, data) => axios.post(baseUrl + endpoit, data),
+  registro: (endpoit, data) => axios.post(baseUrl + endpoit, data),
 }
 
 export default apiUsuarios
