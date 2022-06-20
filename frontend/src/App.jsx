@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import CardProduto from './components/produtos/CardProduto'
 import Footer from './components/Footer'
@@ -18,9 +18,13 @@ export default function App() {
     () => JSON.parse(localStorage.getItem('usuario')) || {},
   )
 
-  function logout() {
-    apiUsuarios.logout()
-    setUsuarioLogado({})
+  async function logout() {
+    try {
+      await apiUsuarios.logout()
+      setUsuarioLogado({})
+    } catch (error) {
+      toast.error('Logout não efetuado')
+    }
   }
 
   useEffect(() => {

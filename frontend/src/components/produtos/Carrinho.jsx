@@ -15,8 +15,9 @@ export default function Carrinho() {
     () => JSON.parse(localStorage.getItem('usuario')) || {},
   )
 
-  function logout() {
-    apiUsuarios.logout()
+  async function logout() {
+    let logout = await apiUsuarios.logout()
+    console.log(logout)
     setUsuarioLogado({})
   }
 

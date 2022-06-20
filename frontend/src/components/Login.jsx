@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import logo from '../img/paw-solid.svg'
+import { Link, useNavigate } from 'react-router-dom'
+import jwt from 'jwt-decode'
 import apiUsuarios from '../services/usuarios'
+import logo from '../img/paw-solid.svg'
 import '../App.css'
 
 export default function Login() {
   const [usuarioForm, setUsuarioForm] = useState({ email: '', senha: '' })
-  const [usuarioLogado, setUsuarioLogado] = useState({})
+
+  const navigate = useNavigate()
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -23,10 +25,10 @@ export default function Login() {
       email: usuarioForm.email,
       senha: usuarioForm.senha,
     })
-    const { usuario: usuarioApi } = resposta
-    setUsuarioLogado(
-      localStorage.setItem('usuario', JSON.stringify(usuarioApi)),
-    )
+    const { token } = resposta
+    const usuario = jwt(token)
+    console.log(usuario)
+    navigate('/')
   }
 
   return (
