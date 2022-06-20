@@ -4,7 +4,18 @@ const Usuario = require('../models/Usuario')
 const capturarErrosAsync = require('./capturarErrosAsync')
 
 const oUsuarioEstaLogado = capturarErrosAsync(async (req, res, next) => {
-  const { token } = req.cookies
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-type, Accept',
+  )
+  const getToken = (req) => {
+    const authHeader = req.headers.authorization
+    const token = authHeader.split(' ')[1]
+    return token
+  }
+
+  const token = getToken(req)
 
   if (!token) {
     next(
