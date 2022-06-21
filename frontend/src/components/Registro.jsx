@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import jwt from "jwt-decode"
-import apiUsuarios from "../services/usuarios"
+import { registro } from "../services/usuarios"
 import logo from "../img/paw-solid.svg"
 import "../App.css"
 
 export default function Registro() {
-  const [usuarioForm, setUsuarioForm] = useState({ nome: "", email: "", senha: "" })
-
-  const navigate = useNavigate()
+  const [usuarioForm, setUsuarioForm] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+  })
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -21,15 +23,12 @@ export default function Registro() {
 
   const postUsuario = async (event) => {
     event.preventDefault()
-    const { data: resposta } = await apiUsuarios.registro("/registro", {
+    await registro({
       nome: usuarioForm.nome,
       email: usuarioForm.email,
       senha: usuarioForm.senha,
     })
-    const { token } = resposta
-    const { usuario } = jwt(token)
-    localStorage.setItem("usuario", JSON.stringify(usuario))
-    navigate("/")
+    window.location = "/"
   }
 
   return (
@@ -42,8 +41,8 @@ export default function Registro() {
         </Link>
       </div>
       <form>
-        <div className="controle-form">       
-        <label htmlFor="nome">Digite seu Nome</label>
+        <div className="controle-form">
+          <label htmlFor="nome">Digite seu Nome</label>
           <input
             type="text"
             placeholder="Nome"
@@ -52,7 +51,7 @@ export default function Registro() {
             onChange={handleChange}
           />
         </div>
-        <div className="controle-form">       
+        <div className="controle-form">
           <input
             type="text"
             placeholder="Email"
