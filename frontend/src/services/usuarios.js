@@ -1,15 +1,35 @@
-import axios from 'axios'
+import httpService from './httpService'
+import { apiEndpoint } from '../config.json'
+import jwtDecode from 'jwt-decode'
 
-const baseUrl = 'http://localhost:4000/users'
-const logoutRoute = '/eu/logout'
+const usuariosEndpoint = '/users'
 
-const apiUsuarios = {
-  logout: () =>
-    axios.post(baseUrl + logoutRoute, {
-      withCredentials: true,
-    }),
-  get: (id) => axios.get(baseUrl, id),
-  login: (endpoit, data) => axios.post(baseUrl + endpoit, data),
+export async function login(data) {
+  const { data: resposta } = await httpService.post(
+    `${apiEndpoint}${usuariosEndpoint}/login`,
+    data,
+  )
+  const { token } = resposta
+  localStorage.setItem('token', JSON.stringify(token))
 }
 
-export default apiUsuarios
+export function registro(data) {
+  return httpService.post(`${apiEndpoint}${usuariosEndpoint}/registro`, data)
+}
+
+export function atualizarSenha(data) {
+  httpService.put(`${apiEndpoint}${usuariosEndpoint}/eu/alterarsenha`, data)
+}
+
+export function logout() {
+  localStorage.removeItem('token')
+}
+
+export function getUsuarioLogado() {
+  try {
+    const jwt = localStorage.getItem('token')
+    return jwtDecode(jwt)
+  } catch (error) {
+    return ''
+  }
+}
