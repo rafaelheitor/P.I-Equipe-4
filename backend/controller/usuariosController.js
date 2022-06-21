@@ -5,9 +5,6 @@ const ManipuladorDeErros = require('../utils/ManipuladorDeErros')
 const enviarToken = require('../utils/jwt')
 
 const usuariosController = {
-  login: (req, res) => {
-    res.render('login')
-  },
   loginPost: capturarErrosAsync(async (req, res, next) => {
     let { email, senha } = req.body
     if (!email || !senha) {
@@ -38,9 +35,6 @@ const usuariosController = {
       return next(new ManipuladorDeErros('Email ou senha inválidos', 400))
     }
   }),
-  registro: (req, res) => {
-    res.render('Registro')
-  },
   registroUser: capturarErrosAsync(async (req, res, next) => {
     let { email, senha, nome, atributo } = req.body
     let oUsuarioJaExiste = await Usuario.findOne({
@@ -70,9 +64,6 @@ const usuariosController = {
       )
     }
   }),
-  pagamento: (req, res) => {
-    res.render('pagamento')
-  },
   atualizarSenha: capturarErrosAsync(async (req, res, next) => {
     let { senhaAtual, novaSenha } = req.body
     const { usuario } = req

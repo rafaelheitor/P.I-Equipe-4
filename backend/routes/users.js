@@ -5,13 +5,8 @@ const validaUsuarioLogado = require('../middleware/validaUsuarioLogado')
 
 /* GET users listing. */
 
-//Tela de Login
-router.get('/login', usuariosController.login)
 router.post('/login', usuariosController.loginPost)
 
-//Tela de Registro
-
-router.get('/registro', usuariosController.registro)
 router.post('/registro', usuariosController.registroUser)
 router.put(
   '/eu/alterarsenha',
@@ -19,7 +14,5 @@ router.put(
   usuariosController.atualizarSenha,
 )
 router.post('/eu/logout', validaUsuarioLogado, usuariosController.logout)
-
-router.get('/pagamento', usuariosController.pagamento)
 
 module.exports = router
