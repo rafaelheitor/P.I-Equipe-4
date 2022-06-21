@@ -6,7 +6,7 @@ const verificaPrivilegios = require('../middleware/verificaPrivilegios')
 
 router.get('/', produtosController.todosProdutos)
 router.get(
-  '/:id/detalhe',
+  '/detalhe/:id',
   oUsuarioEstaLogado,
   produtosController.detalheProduto,
 )
