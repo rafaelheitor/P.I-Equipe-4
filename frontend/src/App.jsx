@@ -1,39 +1,38 @@
-import React, { useState, useEffect, useContext } from "react"
-import { ToastContainer, toast } from "react-toastify"
-import CardProduto from "./components/produtos/CardProduto"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
-import produtosApi from "./services/produtos"
-import apiUsuarios from "./services/usuarios"
-import "react-toastify/dist/ReactToastify.css"
-import "./App.css"
+import React, { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import CardProduto from './components/produtos/CardProduto'
+import { getProdutos } from './services/produtos'
+import { getUsuarioLogado, logout } from './services/usuarios'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import 'react-toastify/dist/ReactToastify.css'
+import './App.css'
 
 export default function App() {
   const [apiData, setApiData] = useState([])
   const [produtosCarrinho, setProdutosCarrinho] = useState(
-    () => JSON.parse(localStorage.getItem("produtos")) || []
+    () => JSON.parse(localStorage.getItem('produtos')) || [],
   )
 
-  const [usuarioLogado, setUsuarioLogado] = useState(
-    () => JSON.parse(localStorage.getItem("usuario")) || {}
-  )
+  const [usuarioLogado, setUsuarioLogado] = useState('')
+  const { usuario } = getUsuarioLogado()
 
-  async function logout() {
+  useEffect(() => {
+    setUsuarioLogado(usuario)
+  }, [usuarioLogado])
+
+  async function logoutFunction() {
     try {
-      setUsuarioLogado({})
-      toast.success("Logout efetuado com sucesso")
+      logout()
+      toast.success('Logout efetuado com sucesso')
     } catch (error) {
-      toast.error("Logout não efetuado")
+      toast.error('Logout não efetuado')
     }
   }
 
-  useEffect(() => {
-    localStorage.setItem("usuario", JSON.stringify(usuarioLogado))
-  }, [usuarioLogado])
-
   const fetchProdutos = async () => {
     try {
-      const { data: produtos } = await produtosApi.get()
+      const { data: produtos } = await getProdutos()
       setApiData(produtos)
     } catch (error) {
       console.log(error)
@@ -46,11 +45,11 @@ export default function App() {
 
   const adicionaCarrinho = (obj) => {
     setProdutosCarrinho((prevState) => [obj, ...prevState])
-    toast.success("Produto adicionado ao carrinho")
+    toast.success('Produto adicionado ao carrinho')
   }
 
   useEffect(() => {
-    localStorage.setItem("produtos", JSON.stringify(produtosCarrinho))
+    localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
   }, [produtosCarrinho])
 
   const produtosCard = apiData.map((produto) => (
@@ -70,8 +69,8 @@ export default function App() {
       <ToastContainer />
       <Header
         itens={produtosCarrinho.length}
-        usuario={usuarioLogado.nome}
-        handleLogout={logout}
+        usuario={usuarioLogado ? usuarioLogado.nome : null}
+        handleLogout={logoutFunction}
       />
       <div className="catalogo">{produtosCard}</div>
       <Footer />

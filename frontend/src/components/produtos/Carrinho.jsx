@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
 import CardProdutoCarrinho from './CardProdutoCarrinho'
-import apiUsuarios from '../../services/usuarios'
+import { logout, getUsuarioLogado } from '../../services/usuarios'
 import { ToastContainer, toast } from 'react-toastify'
 import '../../App.css'
 
@@ -11,18 +11,16 @@ export default function Carrinho() {
     () => JSON.parse(localStorage.getItem('produtos')) || [],
   )
 
-  const [usuarioLogado, setUsuarioLogado] = useState(
-    () => JSON.parse(localStorage.getItem('usuario')) || {},
-  )
+  const [usuarioLogado, setUsuarioLogado] = useState('')
 
-  async function logout() {
-    let logout = await apiUsuarios.logout()
-    console.log(logout)
-    setUsuarioLogado({})
+  async function logoutFunction() {
+    logout()
+    setUsuarioLogado('')
   }
 
   useEffect(() => {
-    localStorage.setItem('usuario', JSON.stringify(usuarioLogado))
+    const usuario = getUsuarioLogado()
+    setUsuarioLogado(usuario)
   }, [usuarioLogado])
 
   const removerCarrinho = (id) => {
@@ -52,7 +50,7 @@ export default function Carrinho() {
       <Header
         itens={produtosCarrinho.length}
         usuario={usuarioLogado.nome}
-        handleLogout={logout}
+        handleLogout={logoutFunction}
       />
       {produtosCarrinho.length > 0 ? (
         <div className="catalogo">{cardsCarrinho}</div>
