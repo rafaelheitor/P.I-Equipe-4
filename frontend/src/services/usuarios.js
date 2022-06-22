@@ -26,7 +26,10 @@ export function atualizarSenha(data) {
   httpService.put(`${apiEndpoint}${usuariosEndpoint}/eu/alterarsenha`, data)
 }
 
-export function logout() {
+export async function logout() {
+  httpService.post(`${apiEndpoint}${usuariosEndpoint}/eu/logout`, null, {
+    withCredentials: true,
+  })
   localStorage.removeItem("token")
 }
 
@@ -37,4 +40,8 @@ export function getUsuarioLogado() {
   } catch (error) {
     return ""
   }
+}
+
+export function getToken() {
+  return localStorage.getItem("token")
 }
