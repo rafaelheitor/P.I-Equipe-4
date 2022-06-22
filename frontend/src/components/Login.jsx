@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import jwt from 'jwt-decode'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { login } from '../services/usuarios'
 import logo from '../img/paw-solid.svg'
 import '../App.css'
+import { ToastContainer } from 'react-toastify'
 
 export default function Login() {
   const [usuarioForm, setUsuarioForm] = useState({ email: '', senha: '' })
-
-  const navigate = useNavigate()
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -30,6 +28,7 @@ export default function Login() {
 
   return (
     <div className="container-login">
+      <ToastContainer />
       <div className="head-login">
         <Link to="/">
           <h1>Pet & Cia </h1>

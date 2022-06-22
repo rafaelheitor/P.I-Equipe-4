@@ -52,10 +52,10 @@ export default function App() {
     localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
   }, [produtosCarrinho])
 
-  const produtosCard = apiData.map((produto) => (
+  const produtosCard = apiData.map((produto, index) => (
     <CardProduto
       id={produto.id}
-      key={produto.id}
+      key={index}
       nome={produto.nome}
       valor={produto.valor}
       imagem={produto.imagem_produto}

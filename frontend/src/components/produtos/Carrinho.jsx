@@ -19,7 +19,7 @@ export default function Carrinho() {
   }
 
   useEffect(() => {
-    const usuario = getUsuarioLogado()
+    const { usuario } = getUsuarioLogado()
     setUsuarioLogado(usuario)
   }, [usuarioLogado])
 
@@ -33,9 +33,9 @@ export default function Carrinho() {
     localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
   }, [produtosCarrinho])
 
-  const cardsCarrinho = produtosCarrinho.map((produto) => (
+  const cardsCarrinho = produtosCarrinho.map((produto, index) => (
     <CardProdutoCarrinho
-      key={produto.id}
+      key={index}
       id={produto.id}
       nome={produto.nome}
       valor={produto.valor}
@@ -49,7 +49,7 @@ export default function Carrinho() {
       <ToastContainer />
       <Header
         itens={produtosCarrinho.length}
-        usuario={usuarioLogado.nome}
+        usuario={usuarioLogado ? usuarioLogado.nome : ''}
         handleLogout={logoutFunction}
       />
       {produtosCarrinho.length > 0 ? (

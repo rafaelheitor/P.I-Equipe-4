@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import jwt from "jwt-decode"
-import { registro } from "../services/usuarios"
-import logo from "../img/paw-solid.svg"
-import "../App.css"
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { registro } from '../services/usuarios'
+import logo from '../img/paw-solid.svg'
+import '../App.css'
 
 export default function Registro() {
   const [usuarioForm, setUsuarioForm] = useState({
-    nome: "",
-    email: "",
-    senha: "",
+    nome: '',
+    email: '',
+    senha: '',
   })
 
   function handleChange(event) {
@@ -28,7 +27,7 @@ export default function Registro() {
       email: usuarioForm.email,
       senha: usuarioForm.senha,
     })
-    window.location = "/"
+    window.location = '/'
   }
 
   return (
