@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
-import CardProduto from './components/produtos/CardProduto'
-import { getProdutos } from './services/produtos'
-import { getUsuarioLogado, logout } from './services/usuarios'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
+import React, { useState, useEffect } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import CardProduto from "../../components/CardProduto"
+import { getProdutos } from "../../services/produtos"
+import { getUsuarioLogado, logout } from "../../services/usuarios"
+import Footer from "../../components/Footer"
+import Header from "../../components/Header"
+import "react-toastify/dist/ReactToastify.css"
+import "./App.css"
 
 export default function App() {
   const [apiData, setApiData] = useState([])
   const [produtosCarrinho, setProdutosCarrinho] = useState(
-    () => JSON.parse(localStorage.getItem('produtos')) || [],
+    () => JSON.parse(localStorage.getItem("produtos")) || []
   )
 
-  const [usuarioLogado, setUsuarioLogado] = useState('')
+  const [usuarioLogado, setUsuarioLogado] = useState("")
   const { usuario } = getUsuarioLogado()
 
   useEffect(() => {
@@ -24,9 +24,9 @@ export default function App() {
   async function logoutFunction() {
     try {
       logout()
-      toast.success('Logout efetuado com sucesso')
+      toast.success("Logout efetuado com sucesso")
     } catch (error) {
-      toast.error('Logout não efetuado')
+      toast.error("Logout não efetuado")
     }
   }
 
@@ -45,11 +45,11 @@ export default function App() {
 
   const adicionaCarrinho = (obj) => {
     setProdutosCarrinho((prevState) => [obj, ...prevState])
-    toast.success('Produto adicionado ao carrinho')
+    toast.success("Produto adicionado ao carrinho")
   }
 
   useEffect(() => {
-    localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
+    localStorage.setItem("produtos", JSON.stringify(produtosCarrinho))
   }, [produtosCarrinho])
 
   const produtosCard = apiData.map((produto, index) => (

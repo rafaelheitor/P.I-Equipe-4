@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { registro } from '../services/usuarios'
-import logo from '../img/paw-solid.svg'
-import '../App.css'
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import { login } from "../../services/usuarios"
+import logo from "../../img/paw-solid.svg"
+import "../Home/App.css"
+import { ToastContainer } from "react-toastify"
 
-export default function Registro() {
-  const [usuarioForm, setUsuarioForm] = useState({
-    nome: '',
-    email: '',
-    senha: '',
-  })
+export default function Login() {
+  const [usuarioForm, setUsuarioForm] = useState({ email: "", senha: "" })
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -22,16 +19,16 @@ export default function Registro() {
 
   const postUsuario = async (event) => {
     event.preventDefault()
-    await registro({
-      nome: usuarioForm.nome,
+    await login({
       email: usuarioForm.email,
       senha: usuarioForm.senha,
     })
-    window.location = '/'
+    window.location = "/"
   }
 
   return (
     <div className="container-login">
+      <ToastContainer />
       <div className="head-login">
         <Link to="/">
           <h1>Pet & Cia </h1>
@@ -41,16 +38,7 @@ export default function Registro() {
       </div>
       <form>
         <div className="controle-form">
-          <label htmlFor="nome">Digite seu Nome</label>
-          <input
-            type="text"
-            placeholder="Nome"
-            name="nome"
-            value={usuarioForm.nome}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="controle-form">
+          <label htmlFor="email">Digite seu Email</label>
           <input
             type="text"
             placeholder="Email"
@@ -73,8 +61,8 @@ export default function Registro() {
           Entrar
         </button>
       </form>
-      <p>Já é cadastrado? </p>
-      <Link to="/login">Login</Link>
+      <p>Ainda não tem registro?</p>
+      <Link to="/registro">Registre-se</Link>
     </div>
   )
 }

@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { login } from '../services/usuarios'
-import logo from '../img/paw-solid.svg'
-import '../App.css'
-import { ToastContainer } from 'react-toastify'
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import { registro } from "../../services/usuarios"
+import logo from "../../img/paw-solid.svg"
+import "../Home/App.css"
 
-export default function Login() {
-  const [usuarioForm, setUsuarioForm] = useState({ email: '', senha: '' })
+export default function Registro() {
+  const [usuarioForm, setUsuarioForm] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+  })
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -19,16 +22,16 @@ export default function Login() {
 
   const postUsuario = async (event) => {
     event.preventDefault()
-    await login({
+    await registro({
+      nome: usuarioForm.nome,
       email: usuarioForm.email,
       senha: usuarioForm.senha,
     })
-    window.location = '/'
+    window.location = "/"
   }
 
   return (
     <div className="container-login">
-      <ToastContainer />
       <div className="head-login">
         <Link to="/">
           <h1>Pet & Cia </h1>
@@ -38,7 +41,16 @@ export default function Login() {
       </div>
       <form>
         <div className="controle-form">
-          <label htmlFor="email">Digite seu Email</label>
+          <label htmlFor="nome">Digite seu Nome</label>
+          <input
+            type="text"
+            placeholder="Nome"
+            name="nome"
+            value={usuarioForm.nome}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="controle-form">
           <input
             type="text"
             placeholder="Email"
@@ -61,8 +73,8 @@ export default function Login() {
           Entrar
         </button>
       </form>
-      <p>Ainda não tem registro?</p>
-      <Link to="/registro">Registre-se</Link>
+      <p>Já é cadastrado? </p>
+      <Link to="/login">Login</Link>
     </div>
   )
 }

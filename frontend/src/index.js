@@ -1,22 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import App from './App'
-import Carrinho from './components/produtos/Carrinho'
-import Login from './components/Login'
-import Registro from './components/Registro'
+import React from "react"
+import ReactDOM from "react-dom/client"
+import Rotas from "./routes/routes"
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/carrinho" element={<Carrinho />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registro" element={<Registro />} />
-    </Routes>
-  </BrowserRouter>,
-)
+const root = ReactDOM.createRoot(document.getElementById("root"))
+root.render(<Rotas />)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

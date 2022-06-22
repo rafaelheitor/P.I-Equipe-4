@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import Header from '../Header'
-import Footer from '../Footer'
-import CardProdutoCarrinho from './CardProdutoCarrinho'
-import { logout, getUsuarioLogado } from '../../services/usuarios'
-import { ToastContainer, toast } from 'react-toastify'
-import '../../App.css'
+import React, { useState, useEffect } from "react"
+import Header from "../../components/Header"
+import Footer from "../../components/Footer"
+import CardProdutoCarrinho from "../../components/CardProdutoCarrinho"
+import { logout, getUsuarioLogado } from "../../services/usuarios"
+import { ToastContainer, toast } from "react-toastify"
+import "../Home/App.css"
 
 export default function Carrinho() {
   const [produtosCarrinho, setProdutosCarrinho] = useState(
-    () => JSON.parse(localStorage.getItem('produtos')) || [],
+    () => JSON.parse(localStorage.getItem("produtos")) || []
   )
 
-  const [usuarioLogado, setUsuarioLogado] = useState('')
+  const [usuarioLogado, setUsuarioLogado] = useState("")
 
   async function logoutFunction() {
     logout()
-    setUsuarioLogado('')
+    setUsuarioLogado("")
   }
 
   useEffect(() => {
@@ -26,11 +26,11 @@ export default function Carrinho() {
   const removerCarrinho = (id) => {
     const novoCarrinho = produtosCarrinho.filter((produto) => produto.id !== id)
     setProdutosCarrinho(novoCarrinho)
-    toast('Produto removido')
+    toast("Produto removido")
   }
 
   useEffect(() => {
-    localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
+    localStorage.setItem("produtos", JSON.stringify(produtosCarrinho))
   }, [produtosCarrinho])
 
   const cardsCarrinho = produtosCarrinho.map((produto, index) => (
@@ -49,7 +49,7 @@ export default function Carrinho() {
       <ToastContainer />
       <Header
         itens={produtosCarrinho.length}
-        usuario={usuarioLogado ? usuarioLogado.nome : ''}
+        usuario={usuarioLogado ? usuarioLogado.nome : ""}
         handleLogout={logoutFunction}
       />
       {produtosCarrinho.length > 0 ? (
