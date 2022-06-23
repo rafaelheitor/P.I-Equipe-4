@@ -4,19 +4,17 @@ const Usuario = require('../models/Usuario')
 const capturarErrosAsync = require('./capturarErrosAsync')
 
 const oUsuarioEstaLogado = capturarErrosAsync(async (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-type, Accept',
-  )
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.header('x-auth-token')
+
   const getToken = (req) => {
-    const authHeader = req.headers.authorization
-    const token = authHeader.split(' ')[1]
-    return token
+    const authHeader = req.headers['x-auth-token']
+    let tokenHeader = authHeader.split(' ')[1]
+    let tokenSemAspas = tokenHeader.substring(1, tokenHeader.length - 1)
+    return tokenSemAspas
   }
 
   const token = getToken(req)
-
   if (!token) {
     next(
       new ManipuladorDeErros(
@@ -28,7 +26,6 @@ const oUsuarioEstaLogado = capturarErrosAsync(async (req, res, next) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET)
   req.user = await Usuario.findByPk(decoded.id)
-  console.log(decoded)
   next()
 })
 

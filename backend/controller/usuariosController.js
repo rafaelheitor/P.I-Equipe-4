@@ -50,6 +50,7 @@ const usuariosController = {
         atributo,
       })
       const resposta = {
+        id: usuario.id,
         nome: usuario.nome,
         email: usuario.email,
       }
