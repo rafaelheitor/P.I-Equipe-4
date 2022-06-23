@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express()
 const produtosController = require('../controller/produtosController')
-const oUsuarioEstaLogado = require('../middleware/validaUsuarioLogado')
-const verificaPrivilegios = require('../middleware/verificaPrivilegios')
+const {
+  oUsuarioEstaLogado,
+  verificaPrivilegios,
+} = require('../middleware/auth')
 
 router.get('/', produtosController.todosProdutos)
 router.get(
