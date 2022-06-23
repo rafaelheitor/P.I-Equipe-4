@@ -21,7 +21,7 @@ export default function Carrinho() {
   useEffect(() => {
     const { usuario } = getUsuarioLogado()
     setUsuarioLogado(usuario)
-  }, [usuarioLogado])
+  }, [])
 
   const removerCarrinho = (id) => {
     const novoCarrinho = produtosCarrinho.filter((produto) => produto.id !== id)
