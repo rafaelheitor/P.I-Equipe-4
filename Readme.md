@@ -38,7 +38,7 @@ precisaremos definir as seguintes variáveis de ambiente:
 2. DB_HOST= nome do host do banco de dados || db
 3. DB_DATABASE= nome do banco de dados || sqlpi
 4. DB_USER= usuario do banco de dados || root
-5. DB_PASSWORD= senha do banco de dados
+5. DB_PASSWORD= senha do banco de dados || root
 6. DB_PORT= porta do banco de dados || 3306
 7. JWT_SECRET = Segredo para criar e verificar o token JWT
 8. JWT_EXPIRES_TIME = tempo de expiração do token
