@@ -39,9 +39,9 @@ docker compose up
 
 Tome um café e aguarde enquanto o Docker cria o ambiente com os serviços necessários e executa os scripts, instala as dependências, cria o banco, criar as tabelas, popular o banco de dados e iniciar o projeto.
 
-Caso os scripts do backend não executem, navegue até /backend abra o arquivo docker-entrypoint.sh
-Observe na barra de status inferior do seu editor de códigos e verifique o End line sequence.
-Se estiver em CLRF mude para LF. Isso deve fazer o shell script rodar normalmente.
+> Nota: Caso os scripts do backend não executem, navegue até /backend abra o arquivo docker-entrypoint.sh
+> Observe na barra de status inferior do seu editor de códigos e verifique o End line sequence.
+> Se estiver em CLRF mude para LF. Isso deve fazer o shell script rodar normalmente.
 
 # Execução local
 
