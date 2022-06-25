@@ -1,10 +1,13 @@
-const Produto = require("../models/Produto")
-const capturarErrosAsync = require("../middleware/capturarErrosAsync")
+const Produto = require('../models/Produto')
+const capturarErrosAsync = require('../middleware/capturarErrosAsync')
 
 const produtosController = {
   todosProdutos: capturarErrosAsync(async (req, res) => {
     const listaDeProdutos = await Produto.findAll()
-    res.send(listaDeProdutos)
+    res.status(200).json({
+      success: true,
+      listaDeProdutos,
+    })
   }),
 
   novoProduto: capturarErrosAsync(async (req, res, next) => {
@@ -29,7 +32,10 @@ const produtosController = {
     let { id } = req.params
     let produto = await Produto.findByPk(id)
 
-    res.render("detalhe", { produto: produto })
+    res.status(200).json({
+      success: true,
+      produto,
+    })
   },
   deletaProduto: async (req, res) => {
     let { id } = req.params
@@ -38,7 +44,7 @@ const produtosController = {
         id,
       },
     })
-    res.send("Produto deletado")
+    res.send('Produto deletado')
   },
 }
 
