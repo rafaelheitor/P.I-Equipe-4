@@ -32,7 +32,7 @@ export default function App() {
 
   const fetchProdutos = async () => {
     try {
-      const { data: produtos } = await getProdutos()
+      const produtos = await getProdutos()
       setApiData(produtos)
     } catch (error) {
       console.log(error)

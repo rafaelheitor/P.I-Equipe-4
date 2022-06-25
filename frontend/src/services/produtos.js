@@ -3,8 +3,12 @@ import { apiEndpoint } from '../config.json'
 
 const produtosEndpoint = '/produtos'
 
-export function getProdutos() {
-  return httpService.get(apiEndpoint + produtosEndpoint)
+export async function getProdutos() {
+  try {
+    const { data } = await httpService.get(apiEndpoint + produtosEndpoint)
+    const { listaDeProdutos } = data
+    return listaDeProdutos
+  } catch (error) {}
 }
 
 export function createProduto(data) {
@@ -13,6 +17,12 @@ export function createProduto(data) {
 export function deleteProduto(id) {
   return httpService.delete(apiEndpoint + produtosEndpoint + `/deletar/${id}`)
 }
-export function infoProduto(id) {
-  return httpService.get(apiEndpoint + produtosEndpoint + `/detalhe/${id}`)
+export async function infoProduto(id) {
+  try {
+    const { data } = await httpService.get(
+      apiEndpoint + produtosEndpoint + `/detalhe/${id}`,
+    )
+    const { produto } = data
+    return produto
+  } catch (error) {}
 }
