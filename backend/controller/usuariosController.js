@@ -53,6 +53,7 @@ const usuariosController = {
         id: usuario.id,
         nome: usuario.nome,
         email: usuario.email,
+        atributo: usuario.atributo,
       }
 
       enviarToken(resposta, 200, res)
