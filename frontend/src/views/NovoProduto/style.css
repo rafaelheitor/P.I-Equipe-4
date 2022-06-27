@@ -1,11 +1,19 @@
 
-
+.novo-produto {
+    padding: 20px 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .container-produto {
     display: flex;
-    border-color: #D3CE3D;
-    flex-direction: column;
-    background-color: #FFF;
     justify-content: center;
+    flex-direction: column;
+    border: #D3CE3D 3px solid;
+    background-color: #FFF;
+    max-width: 450px;
+    align-self: center;
 }
 
 .container-produto  h1 {
