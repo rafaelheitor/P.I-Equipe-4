@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* {
-    margin    : 0;
-    padding   : 0;
-    box-sizing: border-box;
-}
-
-body {
-    margin     : auto;
-    font-family: Poppins;
-    max-width  : 3000px;
-    max-height: 3000px;
-}
 
 .container-produto {
     display: flex;

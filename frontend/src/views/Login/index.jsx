@@ -27,8 +27,8 @@ export default function Login() {
   }
 
   return (
-    <main>
-      <div className='container'>
+    <main className='login'>
+      <div className='login-container'>
         <ToastContainer />
         <div className='head-login'>
           <Link to='/'>
