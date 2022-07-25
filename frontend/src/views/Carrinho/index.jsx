@@ -3,13 +3,12 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import CardProdutoCarrinho from '../../components/CardProdutoCarrinho'
 import { logout, getUsuarioLogado } from '../../services/usuarios'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
+import useCarrinho from '../../hooks/useCarrinho'
 import '../Home/App.css'
 
 export default function Carrinho() {
-  const [produtosCarrinho, setProdutosCarrinho] = useState(
-    () => JSON.parse(localStorage.getItem('produtos')) || [],
-  )
+  const [produtosCarrinho, setProdutosCarrinho, removerCarrinho] = useCarrinho()
 
   const [usuarioLogado, setUsuarioLogado] = useState('')
 
@@ -22,16 +21,6 @@ export default function Carrinho() {
     const { usuario } = getUsuarioLogado()
     setUsuarioLogado(usuario)
   }, [])
-
-  const removerCarrinho = (id) => {
-    const novoCarrinho = produtosCarrinho.filter((produto) => produto.id !== id)
-    setProdutosCarrinho(novoCarrinho)
-    toast('Produto removido')
-  }
-
-  useEffect(() => {
-    localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
-  }, [produtosCarrinho])
 
   const cardsCarrinho = produtosCarrinho.map((produto, index) => (
     <CardProdutoCarrinho

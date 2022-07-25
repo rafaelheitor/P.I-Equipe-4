@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import CardProduto from '../../components/CardProduto'
 import { getProdutos } from '../../services/produtos'
 import { getUsuarioLogado, logout } from '../../services/usuarios'
+import useCarrinho from '../../hooks/useCarrinho'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import 'react-toastify/dist/ReactToastify.css'
@@ -10,10 +11,7 @@ import './App.css'
 
 export default function App() {
   const [apiData, setApiData] = useState([])
-  const [produtosCarrinho, setProdutosCarrinho] = useState(
-    () => JSON.parse(localStorage.getItem('produtos')) || [],
-  )
-
+  const [produtosCarrinho, adicionaCarrinho] = useCarrinho()
   const [usuarioLogado, setUsuarioLogado] = useState('')
   const { usuario } = getUsuarioLogado()
 
@@ -42,15 +40,6 @@ export default function App() {
   useEffect(() => {
     fetchProdutos()
   }, [])
-
-  const adicionaCarrinho = (obj) => {
-    setProdutosCarrinho((prevState) => [obj, ...prevState])
-    toast.success('Produto adicionado ao carrinho')
-  }
-
-  useEffect(() => {
-    localStorage.setItem('produtos', JSON.stringify(produtosCarrinho))
-  }, [produtosCarrinho])
 
   const produtosCard = apiData.map((produto, index) => (
     <CardProduto
