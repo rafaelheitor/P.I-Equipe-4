@@ -1,45 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
-import CardProduto from '../../components/CardProduto'
-import { getProdutos } from '../../services/produtos'
-import { getUsuarioLogado, logout } from '../../services/usuarios'
-import useCarrinho from '../../hooks/useCarrinho'
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
-import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
+import React, { useState, useEffect } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import CardProduto from "../../components/CardProduto"
+import useCarrinho from "../../hooks/useCarrinho"
+import useUsers from "../../hooks/useUsers"
+import useProdutos from "../../hooks/useProdutos"
+import Footer from "../../components/Footer"
+import Header from "../../components/Header"
+import "react-toastify/dist/ReactToastify.css"
+import "./App.css"
 
 export default function App() {
-  const [apiData, setApiData] = useState([])
+  const apiData = useProdutos()
   const [produtosCarrinho, adicionaCarrinho] = useCarrinho()
-  const [usuarioLogado, setUsuarioLogado] = useState('')
-  const { usuario } = getUsuarioLogado()
-
-  useEffect(() => {
-    setUsuarioLogado(usuario)
-  }, [])
-
-  async function logoutFunction() {
-    try {
-      logout()
-      toast.success('Logout efetuado com sucesso')
-    } catch (error) {
-      toast.error('Logout não efetuado')
-    }
-  }
-
-  const fetchProdutos = async () => {
-    try {
-      const produtos = await getProdutos()
-      setApiData(produtos)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchProdutos()
-  }, [])
+  const [usuarioLogado, logoutFunction] = useUsers()
 
   const produtosCard = apiData.map((produto, index) => (
     <CardProduto
@@ -61,7 +34,7 @@ export default function App() {
         usuario={usuarioLogado ? usuarioLogado.nome : null}
         handleLogout={logoutFunction}
       />
-      <div className="catalogo">{produtosCard}</div>
+      <div className='catalogo'>{produtosCard}</div>
       <Footer />
     </div>
   )

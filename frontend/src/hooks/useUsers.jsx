@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react'
-import { getUsuarioLogado, logout } from '../services/usuarios'
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import { getUsuarioLogado, logout } from "../services/usuarios"
 
 export default function useUsers() {
-  const [usuarioLogado, setUsuarioLogado] = useState('')
+  const [usuarioLogado, setUsuarioLogado] = useState("")
 
   async function logoutFunction() {
-    logout()
-    setUsuarioLogado('')
+    try {
+      logout()
+      toast.success("Logout efetuado com sucesso")
+    } catch (error) {
+      toast.error("Logout não efetuado")
+    }
   }
 
   useEffect(() => {
