@@ -2,25 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import CardProdutoCarrinho from '../../components/CardProdutoCarrinho'
-import { logout, getUsuarioLogado } from '../../services/usuarios'
 import { ToastContainer } from 'react-toastify'
 import useCarrinho from '../../hooks/useCarrinho'
+import useUsers from '../../hooks/useUsers'
 import '../Home/App.css'
 
 export default function Carrinho() {
   const [produtosCarrinho, setProdutosCarrinho, removerCarrinho] = useCarrinho()
-
-  const [usuarioLogado, setUsuarioLogado] = useState('')
-
-  async function logoutFunction() {
-    logout()
-    setUsuarioLogado('')
-  }
-
-  useEffect(() => {
-    const { usuario } = getUsuarioLogado()
-    setUsuarioLogado(usuario)
-  }, [])
+  const [usuarioLogado, logoutFunction] = useUsers()
 
   const cardsCarrinho = produtosCarrinho.map((produto, index) => (
     <CardProdutoCarrinho
