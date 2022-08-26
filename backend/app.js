@@ -2,7 +2,6 @@ var createError = require('http-errors')
 var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
-var logger = require('morgan')
 const erroMiddleware = require('./middleware/erroMiddleware')
 const database = require('./database')
 const dotenv = require('dotenv')
@@ -19,9 +18,8 @@ app.use(
     origin: 'http://localhost:3000',
     credentials: true,
     optionsSuccessStatus: 200,
-  }),
+  })
 )
-app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
