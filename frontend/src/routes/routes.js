@@ -12,12 +12,12 @@ export default function Rotas() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/carrinho" element={<Carrinho />} />
-          <Route path="/admin/novoproduto" element={<NovoProduto />} />
-          <Route path="/produtos/:id/detalhe" element={<Detalhe />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registro" element={<Registro />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/carrinho' element={<Carrinho />} />
+          <Route path='/admin/novoproduto' element={<NovoProduto />} />
+          <Route path='/produtos/:id/detalhe' element={<Detalhe />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/registro' element={<Registro />} />
         </Routes>
       </BrowserRouter>
     </div>

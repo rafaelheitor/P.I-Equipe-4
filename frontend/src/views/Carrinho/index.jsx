@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import CardProdutoCarrinho from '../../components/CardProdutoCarrinho'
-import { ToastContainer } from 'react-toastify'
-import useCarrinho from '../../hooks/useCarrinho'
-import useUsers from '../../hooks/useUsers'
-import '../Home/App.css'
+import React from "react"
+import Header from "../../components/Header"
+import Footer from "../../components/Footer"
+import CardProdutoCarrinho from "../../components/CardProdutoCarrinho"
+import { ToastContainer } from "react-toastify"
+import useCarrinho from "../../hooks/useCarrinho"
+import useUsers from "../../hooks/useUsers"
+import "../Home/App.css"
 
 export default function Carrinho() {
   const [produtosCarrinho, setProdutosCarrinho, removerCarrinho] = useCarrinho()
@@ -27,11 +27,11 @@ export default function Carrinho() {
       <ToastContainer />
       <Header
         itens={produtosCarrinho.length}
-        usuario={usuarioLogado ? usuarioLogado.nome : ''}
+        usuario={usuarioLogado ? usuarioLogado.nome : ""}
         handleLogout={logoutFunction}
       />
       {produtosCarrinho.length > 0 ? (
-        <div className="catalogo">{cardsCarrinho}</div>
+        <div className='catalogo'>{cardsCarrinho}</div>
       ) : (
         <h1>Sem produtos adicionados</h1>
       )}
